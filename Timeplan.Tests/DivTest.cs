@@ -502,49 +502,49 @@ namespace Timeplan.Tests
         // DIP - dependency inversion principle
     }
 
-    public class Notificator
-    {
-        int NotificationType { get; set; }
+    //public class Notificator
+    //{
+    //    int NotificationType { get; set; }
 
-        public IMessenger Messenger { get; set; }
+    //    public IMessenger Messenger { get; set; }
 
-        public void Notify()
-        {
-            // Not DIP
-            if (NotificationType == 1)
-            {
-                MailMessage email = new MailMessage();
-                SmtpClient client = new SmtpClient();
-                client.Send(email);
-            }
-            else if (NotificationType == 2)
-            {
-                SMS sms = new SMS();
-                Sender.Send(sms);
-            }
+    //    public void Notify()
+    //    {
+    //        // Not DIP
+    //        if (NotificationType == 1)
+    //        {
+    //            MailMessage email = new MailMessage();
+    //            SmtpClient client = new SmtpClient();
+    //            client.Send(email);
+    //        }
+    //        else if (NotificationType == 2)
+    //        {
+    //            SMS sms = new SMS();
+    //            Sender.Send(sms);
+    //        }
 
-            // DIP
-            Messenger.SendMessage();
-        }
-    }
+    //        // DIP
+    //        Messenger.SendMessage();
+    //    }
+    //}
 
-    public class Kontroller
-    {
+    //public class Kontroller
+    //{
 
-        public void Kontroll()
-        {
-            Notificator notificator = new Notificator();
-            EmailNotificator emailNotificator = new EmailNotificator();
-            SMSNotificator smsNotificator = new SMSNotificator();
+    //    public void Kontroll()
+    //    {
+    //        Notificator notificator = new Notificator();
+    //        EmailNotificator emailNotificator = new EmailNotificator();
+    //        SMSNotificator smsNotificator = new SMSNotificator();
 
-            notificator.Messenger = emailNotificator;
-            notificator.Notify();
+    //        notificator.Messenger = emailNotificator;
+    //        notificator.Notify();
 
-            notificator.Messenger = smsNotificator;
-            notificator.Notify();
+    //        notificator.Messenger = smsNotificator;
+    //        notificator.Notify();
 
-        }
-    }
+    //    }
+    //}
 
     public interface IMessenger
     {
