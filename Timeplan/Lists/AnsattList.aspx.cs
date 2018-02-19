@@ -4,9 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Saplin.Controls;
 using Timeplan.BL;
-using System.Diagnostics;
 
 namespace Timeplan.Lists
 {
