@@ -1,0 +1,152 @@
+/* dragNDropMultiselect
+----------------------------------*/
+
+.dragNDropMultiselect {
+  
+    width: 560px;
+    height: 200px !important;
+}
+
+.ui-dragNDropMultiselect {
+    border: solid 1px;
+    font-size: 0.8em;
+}
+
+    .ui-dragNDropMultiselect ul {
+        -moz-user-select: none;
+    }
+
+    .ui-dragNDropMultiselect li {
+        margin: 0;
+        padding: 0;
+        cursor: default;
+        line-height: 20px;
+        height: 20px;
+        font-size: 16px;
+        font-weight: normal;
+        list-style: none;
+        color: black;
+    }
+
+        .ui-dragNDropMultiselect li a {
+            color: #999;
+            text-decoration: none;
+            padding: 0;
+            display: block;
+            float: left;
+            cursor: pointer;
+        }
+
+        .ui-dragNDropMultiselect li.ui-draggable-dragging {
+            padding-left: 10px;
+        }
+
+    .ui-dragNDropMultiselect div.selected {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        float: left;
+    }
+
+    .ui-dragNDropMultiselect ul.selected {
+        position: relative;
+        padding: 0;
+        overflow: auto;
+        overflow-x: hidden;
+        background: #fff;
+        margin: 0;
+        list-style: none;
+        border: 0;
+        position: relative;
+        width: 100%;
+    }
+
+        .ui-dragNDropMultiselect ul.selected li {
+        }
+
+    .ui-dragNDropMultiselect div.available {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        float: left;
+        border-left: 1px solid;
+    }
+
+    .ui-dragNDropMultiselect ul.available {
+        position: relative;
+        padding: 0;
+        overflow: auto;
+        overflow-x: hidden;
+        background: #fff;
+        margin: 0;
+        list-style: none;
+        border: 0;
+        width: 100%;
+    }
+
+        .ui-dragNDropMultiselect ul.available li {
+            padding-left: 10px;
+        }
+
+    .ui-dragNDropMultiselect .ui-state-default {
+        border: none;
+        margin-bottom: 1px;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .ui-dragNDropMultiselect .ui-state-hover {
+        border: none;
+    }
+
+    .ui-dragNDropMultiselect .ui-widget-header {
+        border: none;
+        font-size: 16px;
+        margin-bottom: 1px;
+        font-weight: normal;
+        background: #333;
+    }
+
+    .ui-dragNDropMultiselect .add-all {
+        float: right;
+        padding: 7px;
+    }
+
+    .ui-dragNDropMultiselect .remove-all {
+        float: right;
+        padding: 7px;
+    }
+
+    .ui-dragNDropMultiselect .search {
+        float: left;
+        padding: 4px;
+    }
+
+    .ui-dragNDropMultiselect .count {
+        float: left;
+        padding: 7px;
+    }
+
+    .ui-dragNDropMultiselect li span.ui-icon-arrowthick-2-n-s {
+        position: absolute;
+        left: 2px;
+        color: black;
+   }
+
+    .ui-dragNDropMultiselect li a.action {
+        position: absolute;
+        right: 2px;
+        top: 2px;
+    }
+
+    .ui-dragNDropMultiselect input.search {
+        height: 24px;
+        padding: 1px;
+        opacity: 0.5;
+        margin: 4px;
+        width: 115px;
+        color: black;
+        background: white;
+    }

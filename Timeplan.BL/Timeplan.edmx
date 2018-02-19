@@ -1,0 +1,1949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TimeplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ansatt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Stillingsstørrelse" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Tlfnr" Type="nvarchar" MaxLength="50" />
+          <Property Name="fk_AvdelingId" Type="int" Nullable="false" />
+          <Property Name="fk_StillingsTypeId" Type="int" Nullable="false" />
+          <Property Name="fk_VarslesAvAnsattId" Type="int" />
+        </EntityType>
+        <EntityType Name="AnsattMøteTid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Slutt" Type="time" Precision="7" Nullable="false" />
+          <Property Name="fk_DagTypeId" Type="int" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnsattTilstede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MandagStart" Type="time" Precision="0" />
+          <Property Name="MandagSlutt" Type="time" Precision="0" />
+          <Property Name="MandagFri" Type="bit" Nullable="false" />
+          <Property Name="TirsdagStart" Type="time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="time" Precision="0" />
+          <Property Name="TirsdagFri" Type="bit" Nullable="false" />
+          <Property Name="OnsdagStart" Type="time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="time" Precision="0" />
+          <Property Name="OnsdagFri" Type="bit" Nullable="false" />
+          <Property Name="TorsdagStart" Type="time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="time" Precision="0" />
+          <Property Name="TorsdagFri" Type="bit" Nullable="false" />
+          <Property Name="FredagStart" Type="time" Precision="0" />
+          <Property Name="FredagSlutt" Type="time" Precision="0" />
+          <Property Name="FredagFri" Type="bit" Nullable="false" />
+          <Property Name="Skole" Type="bit" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="int" Nullable="false" />
+          <Property Name="fk_UkeTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Avdeling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fk_AvdelingslederAnsattId" Type="int" />
+        </EntityType>
+        <EntityType Name="BemanningsNorm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Antall" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DagType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Elev">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SfoProsent" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="TlfNr" Type="nvarchar" MaxLength="50" />
+          <Property Name="fk_KlasseId" Type="int" Nullable="false" />
+          <Property Name="fk_SfoId" Type="int" />
+          <Property Name="fk_SkoleBemanningsNormId" Type="int" Nullable="false" />
+          <Property Name="fk_SfoBemanningsNormId" Type="int" />
+          <Property Name="fk_TrinnId" Type="int" Nullable="false" />
+          <Property Name="fk_HovedPedagogAnsattId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElevTilstede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MandagStart" Type="time" Precision="0" />
+          <Property Name="MandagSlutt" Type="time" Precision="0" />
+          <Property Name="TirsdagStart" Type="time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="time" Precision="0" />
+          <Property Name="OnsdagStart" Type="time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="time" Precision="0" />
+          <Property Name="TorsdagStart" Type="time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="time" Precision="0" />
+          <Property Name="FredagStart" Type="time" Precision="0" />
+          <Property Name="FredagSlutt" Type="time" Precision="0" />
+          <Property Name="fk_ElevId" Type="int" Nullable="false" />
+          <Property Name="fk_UkeTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klasse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaksAntallElever" Type="int" Nullable="false" />
+          <Property Name="fk_AvdelingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KlasseAnsatt">
+          <Key>
+            <PropertyRef Name="fk_KlasseId" />
+            <PropertyRef Name="fk_AnsattId" />
+          </Key>
+          <Property Name="fk_KlasseId" Type="int" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fk_TidsInndelingId" Type="int" Nullable="false" />
+          <Property Name="fk_TidligvaktTidsInndelingId" Type="int" Nullable="false" />
+          <Property Name="fk_SeinvaktTidsInndelingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SfoAnsatt">
+          <Key>
+            <PropertyRef Name="fk_SfoId" />
+            <PropertyRef Name="fk_AnsattId" />
+          </Key>
+          <Property Name="fk_SfoId" Type="int" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fk_TidsInndelingId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StillingsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TimerElevarbeid" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="TimerSamarbeid" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StillingsTypeMøteTid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Slutt" Type="time" Precision="7" Nullable="false" />
+          <Property Name="fk_DagTypeId" Type="int" Nullable="false" />
+          <Property Name="fk_StillingsTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TidsAngivelse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Start" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Slutt" Type="time" Precision="0" Nullable="false" />
+          <Property Name="fk_DagTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TidsInndeling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StartTid" Type="time" Precision="0" Nullable="false" />
+          <Property Name="SluttTid" Type="time" Precision="0" Nullable="false" />
+          <Property Name="TidsIntervall" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trinn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UkeTimeTall" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MandagStart" Type="time" Precision="0" />
+          <Property Name="MandagSlutt" Type="time" Precision="0" />
+          <Property Name="TirsdagStart" Type="time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="time" Precision="0" />
+          <Property Name="OnsdagStart" Type="time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="time" Precision="0" />
+          <Property Name="TorsdagStart" Type="time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="time" Precision="0" />
+          <Property Name="FredagStart" Type="time" Precision="0" />
+          <Property Name="FredagSlutt" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="UkeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ansatt_Avdeling">
+          <End Role="Avdeling" Type="Self.Avdeling" Multiplicity="1" />
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avdeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt">
+              <PropertyRef Name="fk_AvdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ansatt_StillingsType">
+          <End Role="StillingsType" Type="Self.StillingsType" Multiplicity="1" />
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StillingsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt">
+              <PropertyRef Name="fk_StillingsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ansatt_VarslesAvAnsatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="0..1" />
+          <End Role="Ansatt1" Type="Self.Ansatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt1">
+              <PropertyRef Name="fk_VarslesAvAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattMøteTid_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="1" />
+          <End Role="AnsattMøteTid" Type="Self.AnsattMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattMøteTid">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattMøteTid_DagType">
+          <End Role="DagType" Type="Self.DagType" Multiplicity="1" />
+          <End Role="AnsattMøteTid" Type="Self.AnsattMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattMøteTid">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattTilstede_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="1" />
+          <End Role="AnsattTilstede" Type="Self.AnsattTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattTilstede">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattTilstede_UkeType">
+          <End Role="UkeType" Type="Self.UkeType" Multiplicity="1" />
+          <End Role="AnsattTilstede" Type="Self.AnsattTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattTilstede">
+              <PropertyRef Name="fk_UkeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avdeling_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="0..1" />
+          <End Role="Avdeling" Type="Self.Avdeling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avdeling">
+              <PropertyRef Name="fk_AvdelingslederAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_HovedPedagogAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_BemanningsNormSfo">
+          <End Role="BemanningsNorm" Type="Self.BemanningsNorm" Multiplicity="0..1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BemanningsNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SfoBemanningsNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_BemanningsNormSkole">
+          <End Role="BemanningsNorm" Type="Self.BemanningsNorm" Multiplicity="1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BemanningsNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SkoleBemanningsNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Klasse">
+          <End Role="Klasse" Type="Self.Klasse" Multiplicity="1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klasse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_KlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Sfo">
+          <End Role="Sfo" Type="Self.Sfo" Multiplicity="0..1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Trinn">
+          <End Role="Trinn" Type="Self.Trinn" Multiplicity="1" />
+          <End Role="Elev" Type="Self.Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trinn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_TrinnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevTilstede_Elev">
+          <End Role="Elev" Type="Self.Elev" Multiplicity="1" />
+          <End Role="ElevTilstede" Type="Self.ElevTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elev">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevTilstede">
+              <PropertyRef Name="fk_ElevId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevTilstede_UkeType">
+          <End Role="UkeType" Type="Self.UkeType" Multiplicity="1" />
+          <End Role="ElevTilstede" Type="Self.ElevTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevTilstede">
+              <PropertyRef Name="fk_UkeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klasse_Avdeling">
+          <End Role="Avdeling" Type="Self.Avdeling" Multiplicity="1" />
+          <End Role="Klasse" Type="Self.Klasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avdeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Klasse">
+              <PropertyRef Name="fk_AvdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KlasseAnsatt_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="1" />
+          <End Role="KlasseAnsatt" Type="Self.KlasseAnsatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KlasseAnsatt">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KlasseAnsatt_Klasse">
+          <End Role="Klasse" Type="Self.Klasse" Multiplicity="1" />
+          <End Role="KlasseAnsatt" Type="Self.KlasseAnsatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klasse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="KlasseAnsatt">
+              <PropertyRef Name="fk_KlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling">
+          <End Role="TidsInndeling" Type="Self.TidsInndeling" Multiplicity="1" />
+          <End Role="Sfo" Type="Self.Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_TidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling1">
+          <End Role="TidsInndeling" Type="Self.TidsInndeling" Multiplicity="1" />
+          <End Role="Sfo" Type="Self.Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_TidligvaktTidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling2">
+          <End Role="TidsInndeling" Type="Self.TidsInndeling" Multiplicity="1" />
+          <End Role="Sfo" Type="Self.Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_SeinvaktTidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SfoAnsatt_Ansatt">
+          <End Role="Ansatt" Type="Self.Ansatt" Multiplicity="1" />
+          <End Role="SfoAnsatt" Type="Self.SfoAnsatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SfoAnsatt">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SfoAnsatt_Sfo">
+          <End Role="Sfo" Type="Self.Sfo" Multiplicity="1" />
+          <End Role="SfoAnsatt" Type="Self.SfoAnsatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SfoAnsatt">
+              <PropertyRef Name="fk_SfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skole_TidsInndeling">
+          <End Role="TidsInndeling" Type="Self.TidsInndeling" Multiplicity="1" />
+          <End Role="Skole" Type="Self.Skole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Skole">
+              <PropertyRef Name="fk_TidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StillingsTypeMøteTid_DagType">
+          <End Role="DagType" Type="Self.DagType" Multiplicity="1" />
+          <End Role="StillingsTypeMøteTid" Type="Self.StillingsTypeMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StillingsTypeMøteTid">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StillingsTypeMøteTid_StillingsType">
+          <End Role="StillingsType" Type="Self.StillingsType" Multiplicity="1" />
+          <End Role="StillingsTypeMøteTid" Type="Self.StillingsTypeMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StillingsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StillingsTypeMøteTid">
+              <PropertyRef Name="fk_StillingsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tid_DagType">
+          <End Role="DagType" Type="Self.DagType" Multiplicity="1" />
+          <End Role="TidsAngivelse" Type="Self.TidsAngivelse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TidsAngivelse">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TimeplanModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ansatt" EntityType="Self.Ansatt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnsattMøteTid" EntityType="Self.AnsattMøteTid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnsattTilstede" EntityType="Self.AnsattTilstede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avdeling" EntityType="Self.Avdeling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BemanningsNorm" EntityType="Self.BemanningsNorm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DagType" EntityType="Self.DagType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Elev" EntityType="Self.Elev" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElevTilstede" EntityType="Self.ElevTilstede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klasse" EntityType="Self.Klasse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KlasseAnsatt" EntityType="Self.KlasseAnsatt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sfo" EntityType="Self.Sfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SfoAnsatt" EntityType="Self.SfoAnsatt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skole" EntityType="Self.Skole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StillingsType" EntityType="Self.StillingsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StillingsTypeMøteTid" EntityType="Self.StillingsTypeMøteTid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TidsAngivelse" EntityType="Self.TidsAngivelse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TidsInndeling" EntityType="Self.TidsInndeling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trinn" EntityType="Self.Trinn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UkeType" EntityType="Self.UkeType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ansatt_Avdeling" Association="Self.FK_Ansatt_Avdeling">
+            <End Role="Avdeling" EntitySet="Avdeling" />
+            <End Role="Ansatt" EntitySet="Ansatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ansatt_StillingsType" Association="Self.FK_Ansatt_StillingsType">
+            <End Role="StillingsType" EntitySet="StillingsType" />
+            <End Role="Ansatt" EntitySet="Ansatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ansatt_VarslesAvAnsatt" Association="Self.FK_Ansatt_VarslesAvAnsatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="Ansatt1" EntitySet="Ansatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattMøteTid_Ansatt" Association="Self.FK_AnsattMøteTid_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="AnsattMøteTid" EntitySet="AnsattMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattMøteTid_DagType" Association="Self.FK_AnsattMøteTid_DagType">
+            <End Role="DagType" EntitySet="DagType" />
+            <End Role="AnsattMøteTid" EntitySet="AnsattMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattTilstede_Ansatt" Association="Self.FK_AnsattTilstede_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="AnsattTilstede" EntitySet="AnsattTilstede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattTilstede_UkeType" Association="Self.FK_AnsattTilstede_UkeType">
+            <End Role="UkeType" EntitySet="UkeType" />
+            <End Role="AnsattTilstede" EntitySet="AnsattTilstede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avdeling_Ansatt" Association="Self.FK_Avdeling_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="Avdeling" EntitySet="Avdeling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Ansatt" Association="Self.FK_Elev_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_BemanningsNormSfo" Association="Self.FK_Elev_BemanningsNormSfo">
+            <End Role="BemanningsNorm" EntitySet="BemanningsNorm" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_BemanningsNormSkole" Association="Self.FK_Elev_BemanningsNormSkole">
+            <End Role="BemanningsNorm" EntitySet="BemanningsNorm" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Klasse" Association="Self.FK_Elev_Klasse">
+            <End Role="Klasse" EntitySet="Klasse" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Sfo" Association="Self.FK_Elev_Sfo">
+            <End Role="Sfo" EntitySet="Sfo" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Trinn" Association="Self.FK_Elev_Trinn">
+            <End Role="Trinn" EntitySet="Trinn" />
+            <End Role="Elev" EntitySet="Elev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevTilstede_Elev" Association="Self.FK_ElevTilstede_Elev">
+            <End Role="Elev" EntitySet="Elev" />
+            <End Role="ElevTilstede" EntitySet="ElevTilstede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevTilstede_UkeType" Association="Self.FK_ElevTilstede_UkeType">
+            <End Role="UkeType" EntitySet="UkeType" />
+            <End Role="ElevTilstede" EntitySet="ElevTilstede" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klasse_Avdeling" Association="Self.FK_Klasse_Avdeling">
+            <End Role="Avdeling" EntitySet="Avdeling" />
+            <End Role="Klasse" EntitySet="Klasse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KlasseAnsatt_Ansatt" Association="Self.FK_KlasseAnsatt_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="KlasseAnsatt" EntitySet="KlasseAnsatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KlasseAnsatt_Klasse" Association="Self.FK_KlasseAnsatt_Klasse">
+            <End Role="Klasse" EntitySet="Klasse" />
+            <End Role="KlasseAnsatt" EntitySet="KlasseAnsatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling" Association="Self.FK_Sfo_TidsInndeling">
+            <End Role="TidsInndeling" EntitySet="TidsInndeling" />
+            <End Role="Sfo" EntitySet="Sfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling1" Association="Self.FK_Sfo_TidsInndeling1">
+            <End Role="TidsInndeling" EntitySet="TidsInndeling" />
+            <End Role="Sfo" EntitySet="Sfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling2" Association="Self.FK_Sfo_TidsInndeling2">
+            <End Role="TidsInndeling" EntitySet="TidsInndeling" />
+            <End Role="Sfo" EntitySet="Sfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SfoAnsatt_Ansatt" Association="Self.FK_SfoAnsatt_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatt" />
+            <End Role="SfoAnsatt" EntitySet="SfoAnsatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SfoAnsatt_Sfo" Association="Self.FK_SfoAnsatt_Sfo">
+            <End Role="Sfo" EntitySet="Sfo" />
+            <End Role="SfoAnsatt" EntitySet="SfoAnsatt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skole_TidsInndeling" Association="Self.FK_Skole_TidsInndeling">
+            <End Role="TidsInndeling" EntitySet="TidsInndeling" />
+            <End Role="Skole" EntitySet="Skole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StillingsTypeMøteTid_DagType" Association="Self.FK_StillingsTypeMøteTid_DagType">
+            <End Role="DagType" EntitySet="DagType" />
+            <End Role="StillingsTypeMøteTid" EntitySet="StillingsTypeMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StillingsTypeMøteTid_StillingsType" Association="Self.FK_StillingsTypeMøteTid_StillingsType">
+            <End Role="StillingsType" EntitySet="StillingsType" />
+            <End Role="StillingsTypeMøteTid" EntitySet="StillingsTypeMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tid_DagType" Association="Self.FK_Tid_DagType">
+            <End Role="DagType" EntitySet="DagType" />
+            <End Role="TidsAngivelse" EntitySet="TidsAngivelse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TimeplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TimeplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="TimeplanModel.C__MigrationHistory" />
+          <EntitySet Name="Ansatts" EntityType="TimeplanModel.Ansatt" />
+          <EntitySet Name="AnsattMøteTid" EntityType="TimeplanModel.AnsattMøteTid" />
+          <EntitySet Name="AnsattTilstedes" EntityType="TimeplanModel.AnsattTilstede" />
+          <EntitySet Name="AspNetRoles" EntityType="TimeplanModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="TimeplanModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="TimeplanModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="TimeplanModel.AspNetUser" />
+          <EntitySet Name="Avdelings" EntityType="TimeplanModel.Avdeling" />
+          <EntitySet Name="BemanningsNorms" EntityType="TimeplanModel.BemanningsNorm" />
+          <EntitySet Name="DagTypes" EntityType="TimeplanModel.DagType" />
+          <EntitySet Name="Elevs" EntityType="TimeplanModel.Elev" />
+          <EntitySet Name="ElevTilstedes" EntityType="TimeplanModel.ElevTilstede" />
+          <EntitySet Name="Klasses" EntityType="TimeplanModel.Klasse" />
+          <EntitySet Name="Sfoes" EntityType="TimeplanModel.Sfo" />
+          <EntitySet Name="Skoles" EntityType="TimeplanModel.Skole" />
+          <EntitySet Name="StillingsTypes" EntityType="TimeplanModel.StillingsType" />
+          <EntitySet Name="StillingsTypeMøteTid" EntityType="TimeplanModel.StillingsTypeMøteTid" />
+          <EntitySet Name="sysdiagrams" EntityType="TimeplanModel.sysdiagram" />
+          <EntitySet Name="TidsAngivelses" EntityType="TimeplanModel.TidsAngivelse" />
+          <EntitySet Name="TidsInndelings" EntityType="TimeplanModel.TidsInndeling" />
+          <EntitySet Name="Trinns" EntityType="TimeplanModel.Trinn" />
+          <EntitySet Name="UkeTypes" EntityType="TimeplanModel.UkeType" />
+          <AssociationSet Name="FK_Ansatt_Avdeling" Association="TimeplanModel.FK_Ansatt_Avdeling">
+            <End Role="Avdeling" EntitySet="Avdelings" />
+            <End Role="Ansatt" EntitySet="Ansatts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ansatt_StillingsType" Association="TimeplanModel.FK_Ansatt_StillingsType">
+            <End Role="StillingsType" EntitySet="StillingsTypes" />
+            <End Role="Ansatt" EntitySet="Ansatts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ansatt_VarslesAvAnsatt" Association="TimeplanModel.FK_Ansatt_VarslesAvAnsatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="Ansatt1" EntitySet="Ansatts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattMøteTid_Ansatt" Association="TimeplanModel.FK_AnsattMøteTid_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="AnsattMøteTid" EntitySet="AnsattMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattTilstede_Ansatt" Association="TimeplanModel.FK_AnsattTilstede_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="AnsattTilstede" EntitySet="AnsattTilstedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avdeling_Ansatt" Association="TimeplanModel.FK_Avdeling_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="Avdeling" EntitySet="Avdelings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Ansatt" Association="TimeplanModel.FK_Elev_Ansatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattMøteTid_DagType" Association="TimeplanModel.FK_AnsattMøteTid_DagType">
+            <End Role="DagType" EntitySet="DagTypes" />
+            <End Role="AnsattMøteTid" EntitySet="AnsattMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnsattTilstede_UkeType" Association="TimeplanModel.FK_AnsattTilstede_UkeType">
+            <End Role="UkeType" EntitySet="UkeTypes" />
+            <End Role="AnsattTilstede" EntitySet="AnsattTilstedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="TimeplanModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="TimeplanModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Klasse_Avdeling" Association="TimeplanModel.FK_Klasse_Avdeling">
+            <End Role="Avdeling" EntitySet="Avdelings" />
+            <End Role="Klasse" EntitySet="Klasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_BemanningsNormSfo" Association="TimeplanModel.FK_Elev_BemanningsNormSfo">
+            <End Role="BemanningsNorm" EntitySet="BemanningsNorms" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_BemanningsNormSkole" Association="TimeplanModel.FK_Elev_BemanningsNormSkole">
+            <End Role="BemanningsNorm" EntitySet="BemanningsNorms" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StillingsTypeMøteTid_DagType" Association="TimeplanModel.FK_StillingsTypeMøteTid_DagType">
+            <End Role="DagType" EntitySet="DagTypes" />
+            <End Role="StillingsTypeMøteTid" EntitySet="StillingsTypeMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tid_DagType" Association="TimeplanModel.FK_Tid_DagType">
+            <End Role="DagType" EntitySet="DagTypes" />
+            <End Role="TidsAngivelse" EntitySet="TidsAngivelses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Klasse" Association="TimeplanModel.FK_Elev_Klasse">
+            <End Role="Klasse" EntitySet="Klasses" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Sfo" Association="TimeplanModel.FK_Elev_Sfo">
+            <End Role="Sfo" EntitySet="Sfoes" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Elev_Trinn" Association="TimeplanModel.FK_Elev_Trinn">
+            <End Role="Trinn" EntitySet="Trinns" />
+            <End Role="Elev" EntitySet="Elevs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevTilstede_Elev" Association="TimeplanModel.FK_ElevTilstede_Elev">
+            <End Role="Elev" EntitySet="Elevs" />
+            <End Role="ElevTilstede" EntitySet="ElevTilstedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevTilstede_UkeType" Association="TimeplanModel.FK_ElevTilstede_UkeType">
+            <End Role="UkeType" EntitySet="UkeTypes" />
+            <End Role="ElevTilstede" EntitySet="ElevTilstedes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling" Association="TimeplanModel.FK_Sfo_TidsInndeling">
+            <End Role="TidsInndeling" EntitySet="TidsInndelings" />
+            <End Role="Sfo" EntitySet="Sfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling1" Association="TimeplanModel.FK_Sfo_TidsInndeling1">
+            <End Role="TidsInndeling" EntitySet="TidsInndelings" />
+            <End Role="Sfo" EntitySet="Sfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sfo_TidsInndeling2" Association="TimeplanModel.FK_Sfo_TidsInndeling2">
+            <End Role="TidsInndeling" EntitySet="TidsInndelings" />
+            <End Role="Sfo" EntitySet="Sfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skole_TidsInndeling" Association="TimeplanModel.FK_Skole_TidsInndeling">
+            <End Role="TidsInndeling" EntitySet="TidsInndelings" />
+            <End Role="Skole" EntitySet="Skoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StillingsTypeMøteTid_StillingsType" Association="TimeplanModel.FK_StillingsTypeMøteTid_StillingsType">
+            <End Role="StillingsType" EntitySet="StillingsTypes" />
+            <End Role="StillingsTypeMøteTid" EntitySet="StillingsTypeMøteTid" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="TimeplanModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="KlasseAnsatt" Association="TimeplanModel.KlasseAnsatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="Klasse" EntitySet="Klasses" />
+          </AssociationSet>
+          <AssociationSet Name="SfoAnsatt" Association="TimeplanModel.SfoAnsatt">
+            <End Role="Ansatt" EntitySet="Ansatts" />
+            <End Role="Sfo" EntitySet="Sfoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ansatt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Stillingsstørrelse" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Tlfnr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fk_AvdelingId" Type="Int32" Nullable="false" />
+          <Property Name="fk_StillingsTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fk_VarslesAvAnsattId" Type="Int32" />
+          <NavigationProperty Name="Avdeling" Relationship="TimeplanModel.FK_Ansatt_Avdeling" FromRole="Ansatt" ToRole="Avdeling" />
+          <NavigationProperty Name="StillingsType" Relationship="TimeplanModel.FK_Ansatt_StillingsType" FromRole="Ansatt" ToRole="StillingsType" />
+          <NavigationProperty Name="Ansatt1" Relationship="TimeplanModel.FK_Ansatt_VarslesAvAnsatt" FromRole="Ansatt" ToRole="Ansatt1" />
+          <NavigationProperty Name="Ansatt2" Relationship="TimeplanModel.FK_Ansatt_VarslesAvAnsatt" FromRole="Ansatt1" ToRole="Ansatt" />
+          <NavigationProperty Name="AnsattMøteTid" Relationship="TimeplanModel.FK_AnsattMøteTid_Ansatt" FromRole="Ansatt" ToRole="AnsattMøteTid" />
+          <NavigationProperty Name="AnsattTilstedes" Relationship="TimeplanModel.FK_AnsattTilstede_Ansatt" FromRole="Ansatt" ToRole="AnsattTilstede" />
+          <NavigationProperty Name="Avdelings" Relationship="TimeplanModel.FK_Avdeling_Ansatt" FromRole="Ansatt" ToRole="Avdeling" />
+          <NavigationProperty Name="Elevs" Relationship="TimeplanModel.FK_Elev_Ansatt" FromRole="Ansatt" ToRole="Elev" />
+          <NavigationProperty Name="Klasses" Relationship="TimeplanModel.KlasseAnsatt" FromRole="Ansatt" ToRole="Klasse" />
+          <NavigationProperty Name="Sfoes" Relationship="TimeplanModel.SfoAnsatt" FromRole="Ansatt" ToRole="Sfo" />
+        </EntityType>
+        <EntityType Name="AnsattMøteTid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Slutt" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="fk_DagTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ansatt" Relationship="TimeplanModel.FK_AnsattMøteTid_Ansatt" FromRole="AnsattMøteTid" ToRole="Ansatt" />
+          <NavigationProperty Name="DagType" Relationship="TimeplanModel.FK_AnsattMøteTid_DagType" FromRole="AnsattMøteTid" ToRole="DagType" />
+        </EntityType>
+        <EntityType Name="AnsattTilstede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MandagStart" Type="Time" Precision="0" />
+          <Property Name="MandagSlutt" Type="Time" Precision="0" />
+          <Property Name="MandagFri" Type="Boolean" Nullable="false" />
+          <Property Name="TirsdagStart" Type="Time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="TirsdagFri" Type="Boolean" Nullable="false" />
+          <Property Name="OnsdagStart" Type="Time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="OnsdagFri" Type="Boolean" Nullable="false" />
+          <Property Name="TorsdagStart" Type="Time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="TorsdagFri" Type="Boolean" Nullable="false" />
+          <Property Name="FredagStart" Type="Time" Precision="0" />
+          <Property Name="FredagSlutt" Type="Time" Precision="0" />
+          <Property Name="FredagFri" Type="Boolean" Nullable="false" />
+          <Property Name="Skole" Type="Boolean" Nullable="false" />
+          <Property Name="fk_AnsattId" Type="Int32" Nullable="false" />
+          <Property Name="fk_UkeTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ansatt" Relationship="TimeplanModel.FK_AnsattTilstede_Ansatt" FromRole="AnsattTilstede" ToRole="Ansatt" />
+          <NavigationProperty Name="UkeType" Relationship="TimeplanModel.FK_AnsattTilstede_UkeType" FromRole="AnsattTilstede" ToRole="UkeType" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="TimeplanModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="TimeplanModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="TimeplanModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="TimeplanModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="TimeplanModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetRoles" Relationship="TimeplanModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="Avdeling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fk_AvdelingslederAnsattId" Type="Int32" />
+          <NavigationProperty Name="Ansatts" Relationship="TimeplanModel.FK_Ansatt_Avdeling" FromRole="Avdeling" ToRole="Ansatt" />
+          <NavigationProperty Name="Ansatt" Relationship="TimeplanModel.FK_Avdeling_Ansatt" FromRole="Avdeling" ToRole="Ansatt" />
+          <NavigationProperty Name="Klasses" Relationship="TimeplanModel.FK_Klasse_Avdeling" FromRole="Avdeling" ToRole="Klasse" />
+        </EntityType>
+        <EntityType Name="BemanningsNorm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Antall" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="Elevs" Relationship="TimeplanModel.FK_Elev_BemanningsNormSfo" FromRole="BemanningsNorm" ToRole="Elev" />
+          <NavigationProperty Name="Elevs1" Relationship="TimeplanModel.FK_Elev_BemanningsNormSkole" FromRole="BemanningsNorm" ToRole="Elev" />
+        </EntityType>
+        <EntityType Name="DagType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnsattMøteTid" Relationship="TimeplanModel.FK_AnsattMøteTid_DagType" FromRole="DagType" ToRole="AnsattMøteTid" />
+          <NavigationProperty Name="StillingsTypeMøteTid" Relationship="TimeplanModel.FK_StillingsTypeMøteTid_DagType" FromRole="DagType" ToRole="StillingsTypeMøteTid" />
+          <NavigationProperty Name="TidsAngivelses" Relationship="TimeplanModel.FK_Tid_DagType" FromRole="DagType" ToRole="TidsAngivelse" />
+        </EntityType>
+        <EntityType Name="Elev">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SfoProsent" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="TlfNr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fk_KlasseId" Type="Int32" Nullable="false" />
+          <Property Name="fk_SfoId" Type="Int32" />
+          <Property Name="fk_SkoleBemanningsNormId" Type="Int32" Nullable="false" />
+          <Property Name="fk_SfoBemanningsNormId" Type="Int32" />
+          <Property Name="fk_TrinnId" Type="Int32" Nullable="false" />
+          <Property Name="fk_HovedPedagogAnsattId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ansatt" Relationship="TimeplanModel.FK_Elev_Ansatt" FromRole="Elev" ToRole="Ansatt" />
+          <NavigationProperty Name="BemanningsNorm" Relationship="TimeplanModel.FK_Elev_BemanningsNormSfo" FromRole="Elev" ToRole="BemanningsNorm" />
+          <NavigationProperty Name="BemanningsNorm1" Relationship="TimeplanModel.FK_Elev_BemanningsNormSkole" FromRole="Elev" ToRole="BemanningsNorm" />
+          <NavigationProperty Name="Klasse" Relationship="TimeplanModel.FK_Elev_Klasse" FromRole="Elev" ToRole="Klasse" />
+          <NavigationProperty Name="Sfo" Relationship="TimeplanModel.FK_Elev_Sfo" FromRole="Elev" ToRole="Sfo" />
+          <NavigationProperty Name="Trinn" Relationship="TimeplanModel.FK_Elev_Trinn" FromRole="Elev" ToRole="Trinn" />
+          <NavigationProperty Name="ElevTilstedes" Relationship="TimeplanModel.FK_ElevTilstede_Elev" FromRole="Elev" ToRole="ElevTilstede" />
+        </EntityType>
+        <EntityType Name="ElevTilstede">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MandagStart" Type="Time" Precision="0" />
+          <Property Name="MandagSlutt" Type="Time" Precision="0" />
+          <Property Name="TirsdagStart" Type="Time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="OnsdagStart" Type="Time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="TorsdagStart" Type="Time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="FredagStart" Type="Time" Precision="0" />
+          <Property Name="FredagSlutt" Type="Time" Precision="0" />
+          <Property Name="fk_ElevId" Type="Int32" Nullable="false" />
+          <Property Name="fk_UkeTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Elev" Relationship="TimeplanModel.FK_ElevTilstede_Elev" FromRole="ElevTilstede" ToRole="Elev" />
+          <NavigationProperty Name="UkeType" Relationship="TimeplanModel.FK_ElevTilstede_UkeType" FromRole="ElevTilstede" ToRole="UkeType" />
+        </EntityType>
+        <EntityType Name="Klasse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaksAntallElever" Type="Int32" Nullable="false" />
+          <Property Name="fk_AvdelingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avdeling" Relationship="TimeplanModel.FK_Klasse_Avdeling" FromRole="Klasse" ToRole="Avdeling" />
+          <NavigationProperty Name="Elevs" Relationship="TimeplanModel.FK_Elev_Klasse" FromRole="Klasse" ToRole="Elev" />
+          <NavigationProperty Name="Ansatts" Relationship="TimeplanModel.KlasseAnsatt" FromRole="Klasse" ToRole="Ansatt" />
+        </EntityType>
+        <EntityType Name="Sfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fk_TidsInndelingId" Type="Int32" Nullable="false" />
+          <Property Name="fk_TidligvaktTidsInndelingId" Type="Int32" Nullable="false" />
+          <Property Name="fk_SeinvaktTidsInndelingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Elevs" Relationship="TimeplanModel.FK_Elev_Sfo" FromRole="Sfo" ToRole="Elev" />
+          <NavigationProperty Name="TidsInndeling" Relationship="TimeplanModel.FK_Sfo_TidsInndeling" FromRole="Sfo" ToRole="TidsInndeling" />
+          <NavigationProperty Name="TidsInndeling1" Relationship="TimeplanModel.FK_Sfo_TidsInndeling1" FromRole="Sfo" ToRole="TidsInndeling" />
+          <NavigationProperty Name="TidsInndeling2" Relationship="TimeplanModel.FK_Sfo_TidsInndeling2" FromRole="Sfo" ToRole="TidsInndeling" />
+          <NavigationProperty Name="Ansatts" Relationship="TimeplanModel.SfoAnsatt" FromRole="Sfo" ToRole="Ansatt" />
+        </EntityType>
+        <EntityType Name="Skole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fk_TidsInndelingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TidsInndeling" Relationship="TimeplanModel.FK_Skole_TidsInndeling" FromRole="Skole" ToRole="TidsInndeling" />
+        </EntityType>
+        <EntityType Name="StillingsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TimerElevarbeid" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="TimerSamarbeid" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <NavigationProperty Name="Ansatts" Relationship="TimeplanModel.FK_Ansatt_StillingsType" FromRole="StillingsType" ToRole="Ansatt" />
+          <NavigationProperty Name="StillingsTypeMøteTid" Relationship="TimeplanModel.FK_StillingsTypeMøteTid_StillingsType" FromRole="StillingsType" ToRole="StillingsTypeMøteTid" />
+        </EntityType>
+        <EntityType Name="StillingsTypeMøteTid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Slutt" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="fk_DagTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fk_StillingsTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DagType" Relationship="TimeplanModel.FK_StillingsTypeMøteTid_DagType" FromRole="StillingsTypeMøteTid" ToRole="DagType" />
+          <NavigationProperty Name="StillingsType" Relationship="TimeplanModel.FK_StillingsTypeMøteTid_StillingsType" FromRole="StillingsTypeMøteTid" ToRole="StillingsType" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TidsAngivelse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Start" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Slutt" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="fk_DagTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DagType" Relationship="TimeplanModel.FK_Tid_DagType" FromRole="TidsAngivelse" ToRole="DagType" />
+        </EntityType>
+        <EntityType Name="TidsInndeling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartTid" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="SluttTid" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="TidsIntervall" Type="Time" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Sfoes" Relationship="TimeplanModel.FK_Sfo_TidsInndeling" FromRole="TidsInndeling" ToRole="Sfo" />
+          <NavigationProperty Name="Sfoes1" Relationship="TimeplanModel.FK_Sfo_TidsInndeling1" FromRole="TidsInndeling" ToRole="Sfo" />
+          <NavigationProperty Name="Sfoes2" Relationship="TimeplanModel.FK_Sfo_TidsInndeling2" FromRole="TidsInndeling" ToRole="Sfo" />
+          <NavigationProperty Name="Skoles" Relationship="TimeplanModel.FK_Skole_TidsInndeling" FromRole="TidsInndeling" ToRole="Skole" />
+        </EntityType>
+        <EntityType Name="Trinn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UkeTimeTall" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="MandagStart" Type="Time" Precision="0" />
+          <Property Name="MandagSlutt" Type="Time" Precision="0" />
+          <Property Name="TirsdagStart" Type="Time" Precision="0" />
+          <Property Name="TirsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="OnsdagStart" Type="Time" Precision="0" />
+          <Property Name="OnsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="TorsdagStart" Type="Time" Precision="0" />
+          <Property Name="TorsdagSlutt" Type="Time" Precision="0" />
+          <Property Name="FredagStart" Type="Time" Precision="0" />
+          <Property Name="FredagSlutt" Type="Time" Precision="0" />
+          <NavigationProperty Name="Elevs" Relationship="TimeplanModel.FK_Elev_Trinn" FromRole="Trinn" ToRole="Elev" />
+        </EntityType>
+        <EntityType Name="UkeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Navn" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnsattTilstedes" Relationship="TimeplanModel.FK_AnsattTilstede_UkeType" FromRole="UkeType" ToRole="AnsattTilstede" />
+          <NavigationProperty Name="ElevTilstedes" Relationship="TimeplanModel.FK_ElevTilstede_UkeType" FromRole="UkeType" ToRole="ElevTilstede" />
+        </EntityType>
+        <Association Name="FK_Ansatt_Avdeling">
+          <End Type="TimeplanModel.Avdeling" Role="Avdeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avdeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt">
+              <PropertyRef Name="fk_AvdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ansatt_StillingsType">
+          <End Type="TimeplanModel.StillingsType" Role="StillingsType" Multiplicity="1" />
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StillingsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt">
+              <PropertyRef Name="fk_StillingsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ansatt_VarslesAvAnsatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="0..1" />
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ansatt1">
+              <PropertyRef Name="fk_VarslesAvAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattMøteTid_Ansatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="1" />
+          <End Type="TimeplanModel.AnsattMøteTid" Role="AnsattMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattMøteTid">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattTilstede_Ansatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="1" />
+          <End Type="TimeplanModel.AnsattTilstede" Role="AnsattTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattTilstede">
+              <PropertyRef Name="fk_AnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avdeling_Ansatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="0..1" />
+          <End Type="TimeplanModel.Avdeling" Role="Avdeling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Avdeling">
+              <PropertyRef Name="fk_AvdelingslederAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Ansatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ansatt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_HovedPedagogAnsattId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattMøteTid_DagType">
+          <End Type="TimeplanModel.DagType" Role="DagType" Multiplicity="1" />
+          <End Type="TimeplanModel.AnsattMøteTid" Role="AnsattMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattMøteTid">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnsattTilstede_UkeType">
+          <End Type="TimeplanModel.UkeType" Role="UkeType" Multiplicity="1" />
+          <End Type="TimeplanModel.AnsattTilstede" Role="AnsattTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnsattTilstede">
+              <PropertyRef Name="fk_UkeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="TimeplanModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TimeplanModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="TimeplanModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TimeplanModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Klasse_Avdeling">
+          <End Type="TimeplanModel.Avdeling" Role="Avdeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Klasse" Role="Klasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Avdeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Klasse">
+              <PropertyRef Name="fk_AvdelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_BemanningsNormSfo">
+          <End Type="TimeplanModel.BemanningsNorm" Role="BemanningsNorm" Multiplicity="0..1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BemanningsNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SfoBemanningsNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_BemanningsNormSkole">
+          <End Type="TimeplanModel.BemanningsNorm" Role="BemanningsNorm" Multiplicity="1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BemanningsNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SkoleBemanningsNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StillingsTypeMøteTid_DagType">
+          <End Type="TimeplanModel.DagType" Role="DagType" Multiplicity="1" />
+          <End Type="TimeplanModel.StillingsTypeMøteTid" Role="StillingsTypeMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StillingsTypeMøteTid">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tid_DagType">
+          <End Type="TimeplanModel.DagType" Role="DagType" Multiplicity="1" />
+          <End Type="TimeplanModel.TidsAngivelse" Role="TidsAngivelse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DagType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TidsAngivelse">
+              <PropertyRef Name="fk_DagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Klasse">
+          <End Type="TimeplanModel.Klasse" Role="Klasse" Multiplicity="1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klasse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_KlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Sfo">
+          <End Type="TimeplanModel.Sfo" Role="Sfo" Multiplicity="0..1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_SfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Elev_Trinn">
+          <End Type="TimeplanModel.Trinn" Role="Trinn" Multiplicity="1" />
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trinn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Elev">
+              <PropertyRef Name="fk_TrinnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevTilstede_Elev">
+          <End Type="TimeplanModel.Elev" Role="Elev" Multiplicity="1" />
+          <End Type="TimeplanModel.ElevTilstede" Role="ElevTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elev">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevTilstede">
+              <PropertyRef Name="fk_ElevId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevTilstede_UkeType">
+          <End Type="TimeplanModel.UkeType" Role="UkeType" Multiplicity="1" />
+          <End Type="TimeplanModel.ElevTilstede" Role="ElevTilstede" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UkeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevTilstede">
+              <PropertyRef Name="fk_UkeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling">
+          <End Type="TimeplanModel.TidsInndeling" Role="TidsInndeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Sfo" Role="Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_TidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling1">
+          <End Type="TimeplanModel.TidsInndeling" Role="TidsInndeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Sfo" Role="Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_TidligvaktTidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sfo_TidsInndeling2">
+          <End Type="TimeplanModel.TidsInndeling" Role="TidsInndeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Sfo" Role="Sfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sfo">
+              <PropertyRef Name="fk_SeinvaktTidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skole_TidsInndeling">
+          <End Type="TimeplanModel.TidsInndeling" Role="TidsInndeling" Multiplicity="1" />
+          <End Type="TimeplanModel.Skole" Role="Skole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TidsInndeling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Skole">
+              <PropertyRef Name="fk_TidsInndelingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StillingsTypeMøteTid_StillingsType">
+          <End Type="TimeplanModel.StillingsType" Role="StillingsType" Multiplicity="1" />
+          <End Type="TimeplanModel.StillingsTypeMøteTid" Role="StillingsTypeMøteTid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StillingsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StillingsTypeMøteTid">
+              <PropertyRef Name="fk_StillingsTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="TimeplanModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="TimeplanModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="KlasseAnsatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="*" />
+          <End Type="TimeplanModel.Klasse" Role="Klasse" Multiplicity="*" />
+        </Association>
+        <Association Name="SfoAnsatt">
+          <End Type="TimeplanModel.Ansatt" Role="Ansatt" Multiplicity="*" />
+          <End Type="TimeplanModel.Sfo" Role="Sfo" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TimeplanModelStoreContainer" CdmEntityContainer="TimeplanEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="TimeplanModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ansatts">
+            <EntityTypeMapping TypeName="TimeplanModel.Ansatt">
+              <MappingFragment StoreEntitySet="Ansatt">
+                <ScalarProperty Name="fk_VarslesAvAnsattId" ColumnName="fk_VarslesAvAnsattId" />
+                <ScalarProperty Name="fk_StillingsTypeId" ColumnName="fk_StillingsTypeId" />
+                <ScalarProperty Name="fk_AvdelingId" ColumnName="fk_AvdelingId" />
+                <ScalarProperty Name="Tlfnr" ColumnName="Tlfnr" />
+                <ScalarProperty Name="Stillingsstørrelse" ColumnName="Stillingsstørrelse" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnsattMøteTid">
+            <EntityTypeMapping TypeName="TimeplanModel.AnsattMøteTid">
+              <MappingFragment StoreEntitySet="AnsattMøteTid">
+                <ScalarProperty Name="fk_AnsattId" ColumnName="fk_AnsattId" />
+                <ScalarProperty Name="fk_DagTypeId" ColumnName="fk_DagTypeId" />
+                <ScalarProperty Name="Slutt" ColumnName="Slutt" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnsattTilstedes">
+            <EntityTypeMapping TypeName="TimeplanModel.AnsattTilstede">
+              <MappingFragment StoreEntitySet="AnsattTilstede">
+                <ScalarProperty Name="fk_UkeTypeId" ColumnName="fk_UkeTypeId" />
+                <ScalarProperty Name="fk_AnsattId" ColumnName="fk_AnsattId" />
+                <ScalarProperty Name="Skole" ColumnName="Skole" />
+                <ScalarProperty Name="FredagFri" ColumnName="FredagFri" />
+                <ScalarProperty Name="FredagSlutt" ColumnName="FredagSlutt" />
+                <ScalarProperty Name="FredagStart" ColumnName="FredagStart" />
+                <ScalarProperty Name="TorsdagFri" ColumnName="TorsdagFri" />
+                <ScalarProperty Name="TorsdagSlutt" ColumnName="TorsdagSlutt" />
+                <ScalarProperty Name="TorsdagStart" ColumnName="TorsdagStart" />
+                <ScalarProperty Name="OnsdagFri" ColumnName="OnsdagFri" />
+                <ScalarProperty Name="OnsdagSlutt" ColumnName="OnsdagSlutt" />
+                <ScalarProperty Name="OnsdagStart" ColumnName="OnsdagStart" />
+                <ScalarProperty Name="TirsdagFri" ColumnName="TirsdagFri" />
+                <ScalarProperty Name="TirsdagSlutt" ColumnName="TirsdagSlutt" />
+                <ScalarProperty Name="TirsdagStart" ColumnName="TirsdagStart" />
+                <ScalarProperty Name="MandagFri" ColumnName="MandagFri" />
+                <ScalarProperty Name="MandagSlutt" ColumnName="MandagSlutt" />
+                <ScalarProperty Name="MandagStart" ColumnName="MandagStart" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="TimeplanModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="TimeplanModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="TimeplanModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="TimeplanModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avdelings">
+            <EntityTypeMapping TypeName="TimeplanModel.Avdeling">
+              <MappingFragment StoreEntitySet="Avdeling">
+                <ScalarProperty Name="fk_AvdelingslederAnsattId" ColumnName="fk_AvdelingslederAnsattId" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BemanningsNorms">
+            <EntityTypeMapping TypeName="TimeplanModel.BemanningsNorm">
+              <MappingFragment StoreEntitySet="BemanningsNorm">
+                <ScalarProperty Name="Antall" ColumnName="Antall" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DagTypes">
+            <EntityTypeMapping TypeName="TimeplanModel.DagType">
+              <MappingFragment StoreEntitySet="DagType">
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elevs">
+            <EntityTypeMapping TypeName="TimeplanModel.Elev">
+              <MappingFragment StoreEntitySet="Elev">
+                <ScalarProperty Name="fk_HovedPedagogAnsattId" ColumnName="fk_HovedPedagogAnsattId" />
+                <ScalarProperty Name="fk_TrinnId" ColumnName="fk_TrinnId" />
+                <ScalarProperty Name="fk_SfoBemanningsNormId" ColumnName="fk_SfoBemanningsNormId" />
+                <ScalarProperty Name="fk_SkoleBemanningsNormId" ColumnName="fk_SkoleBemanningsNormId" />
+                <ScalarProperty Name="fk_SfoId" ColumnName="fk_SfoId" />
+                <ScalarProperty Name="fk_KlasseId" ColumnName="fk_KlasseId" />
+                <ScalarProperty Name="TlfNr" ColumnName="TlfNr" />
+                <ScalarProperty Name="SfoProsent" ColumnName="SfoProsent" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElevTilstedes">
+            <EntityTypeMapping TypeName="TimeplanModel.ElevTilstede">
+              <MappingFragment StoreEntitySet="ElevTilstede">
+                <ScalarProperty Name="fk_UkeTypeId" ColumnName="fk_UkeTypeId" />
+                <ScalarProperty Name="fk_ElevId" ColumnName="fk_ElevId" />
+                <ScalarProperty Name="FredagSlutt" ColumnName="FredagSlutt" />
+                <ScalarProperty Name="FredagStart" ColumnName="FredagStart" />
+                <ScalarProperty Name="TorsdagSlutt" ColumnName="TorsdagSlutt" />
+                <ScalarProperty Name="TorsdagStart" ColumnName="TorsdagStart" />
+                <ScalarProperty Name="OnsdagSlutt" ColumnName="OnsdagSlutt" />
+                <ScalarProperty Name="OnsdagStart" ColumnName="OnsdagStart" />
+                <ScalarProperty Name="TirsdagSlutt" ColumnName="TirsdagSlutt" />
+                <ScalarProperty Name="TirsdagStart" ColumnName="TirsdagStart" />
+                <ScalarProperty Name="MandagSlutt" ColumnName="MandagSlutt" />
+                <ScalarProperty Name="MandagStart" ColumnName="MandagStart" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klasses">
+            <EntityTypeMapping TypeName="TimeplanModel.Klasse">
+              <MappingFragment StoreEntitySet="Klasse">
+                <ScalarProperty Name="fk_AvdelingId" ColumnName="fk_AvdelingId" />
+                <ScalarProperty Name="MaksAntallElever" ColumnName="MaksAntallElever" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sfoes">
+            <EntityTypeMapping TypeName="TimeplanModel.Sfo">
+              <MappingFragment StoreEntitySet="Sfo">
+                <ScalarProperty Name="fk_SeinvaktTidsInndelingId" ColumnName="fk_SeinvaktTidsInndelingId" />
+                <ScalarProperty Name="fk_TidligvaktTidsInndelingId" ColumnName="fk_TidligvaktTidsInndelingId" />
+                <ScalarProperty Name="fk_TidsInndelingId" ColumnName="fk_TidsInndelingId" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skoles">
+            <EntityTypeMapping TypeName="TimeplanModel.Skole">
+              <MappingFragment StoreEntitySet="Skole">
+                <ScalarProperty Name="fk_TidsInndelingId" ColumnName="fk_TidsInndelingId" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StillingsTypes">
+            <EntityTypeMapping TypeName="TimeplanModel.StillingsType">
+              <MappingFragment StoreEntitySet="StillingsType">
+                <ScalarProperty Name="TimerSamarbeid" ColumnName="TimerSamarbeid" />
+                <ScalarProperty Name="TimerElevarbeid" ColumnName="TimerElevarbeid" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StillingsTypeMøteTid">
+            <EntityTypeMapping TypeName="TimeplanModel.StillingsTypeMøteTid">
+              <MappingFragment StoreEntitySet="StillingsTypeMøteTid">
+                <ScalarProperty Name="fk_StillingsTypeId" ColumnName="fk_StillingsTypeId" />
+                <ScalarProperty Name="fk_DagTypeId" ColumnName="fk_DagTypeId" />
+                <ScalarProperty Name="Slutt" ColumnName="Slutt" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TimeplanModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TidsAngivelses">
+            <EntityTypeMapping TypeName="TimeplanModel.TidsAngivelse">
+              <MappingFragment StoreEntitySet="TidsAngivelse">
+                <ScalarProperty Name="fk_DagTypeId" ColumnName="fk_DagTypeId" />
+                <ScalarProperty Name="Slutt" ColumnName="Slutt" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TidsInndelings">
+            <EntityTypeMapping TypeName="TimeplanModel.TidsInndeling">
+              <MappingFragment StoreEntitySet="TidsInndeling">
+                <ScalarProperty Name="TidsIntervall" ColumnName="TidsIntervall" />
+                <ScalarProperty Name="SluttTid" ColumnName="SluttTid" />
+                <ScalarProperty Name="StartTid" ColumnName="StartTid" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trinns">
+            <EntityTypeMapping TypeName="TimeplanModel.Trinn">
+              <MappingFragment StoreEntitySet="Trinn">
+                <ScalarProperty Name="FredagSlutt" ColumnName="FredagSlutt" />
+                <ScalarProperty Name="FredagStart" ColumnName="FredagStart" />
+                <ScalarProperty Name="TorsdagSlutt" ColumnName="TorsdagSlutt" />
+                <ScalarProperty Name="TorsdagStart" ColumnName="TorsdagStart" />
+                <ScalarProperty Name="OnsdagSlutt" ColumnName="OnsdagSlutt" />
+                <ScalarProperty Name="OnsdagStart" ColumnName="OnsdagStart" />
+                <ScalarProperty Name="TirsdagSlutt" ColumnName="TirsdagSlutt" />
+                <ScalarProperty Name="TirsdagStart" ColumnName="TirsdagStart" />
+                <ScalarProperty Name="MandagSlutt" ColumnName="MandagSlutt" />
+                <ScalarProperty Name="MandagStart" ColumnName="MandagStart" />
+                <ScalarProperty Name="UkeTimeTall" ColumnName="UkeTimeTall" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UkeTypes">
+            <EntityTypeMapping TypeName="TimeplanModel.UkeType">
+              <MappingFragment StoreEntitySet="UkeType">
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="TimeplanModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="KlasseAnsatt" TypeName="TimeplanModel.KlasseAnsatt" StoreEntitySet="KlasseAnsatt">
+            <EndProperty Name="Klasse">
+              <ScalarProperty Name="Id" ColumnName="fk_KlasseId" />
+            </EndProperty>
+            <EndProperty Name="Ansatt">
+              <ScalarProperty Name="Id" ColumnName="fk_AnsattId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SfoAnsatt" TypeName="TimeplanModel.SfoAnsatt" StoreEntitySet="SfoAnsatt">
+            <EndProperty Name="Sfo">
+              <ScalarProperty Name="Id" ColumnName="fk_SfoId" />
+            </EndProperty>
+            <EndProperty Name="Ansatt">
+              <ScalarProperty Name="Id" ColumnName="fk_AnsattId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

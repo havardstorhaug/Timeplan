@@ -1,0 +1,144 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Timeplan.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Timeplan</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+
+<%--jQuery Plugin https://niklausgerber.com/blog/preloadme-a-lightweight-jquery-website-preloader/ --%>
+<!-- Preloader -->
+<script src="../Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    $(window).load(function () { // makes sure the whole site is loaded
+        $('#status').fadeOut(0);  // will first fade out the loading animation
+        $('#preloader').fadeOut(0); // will fade out the white DIV that covers the website.
+        $('body').css({ 'overflow': 'visible' });
+    })
+
+</script>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Timeplan</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Hjem</a></li>
+                        <li><a runat="server" href="~/About">Om oss</a></li>
+                        <li><a runat="server" href="~/Contact">Kontakt</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Login">Logg inn</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hei, <%: Context.User.Identity.GetUserName()  %> </a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lister<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a runat="server" href="~/Lists/ElevList.aspx">Elever</a></li>
+                                        <li><a runat="server" href="~/Lists/AnsattList.aspx">Ansatte</a></li>
+                                        <li><a runat="server" href="~/Lists/KlasseList.aspx">Klasser</a></li>
+                                        <li><a runat="server" href="~/Lists/AvdelingList.aspx">Avdelinger</a></li>
+                                        <li><a runat="server" href="~/Lists/SfoList.aspx">Sfo avdelinger</a></li>
+                                        <li><a runat="server" href="~/Lists/StillingsTypeList.aspx">Stillingstyper</a></li>
+                                        <li><a runat="server" href="~/Lists/TrinnList.aspx">Trinn</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Rapporter<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a runat="server" href="~/Reports/SfoReport.aspx">Sfo avdelinger</a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a runat="server" href="~/Account/Register">Registrer bruker</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Logg ut" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <%--<div id="TitleContent" style="text-align: center">
+            <a runat="server" href="~/">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Urukhai.PNG" BorderStyle="None" />
+            </a>
+            <br />
+        </div>--%>
+
+        <asp:ValidationSummary
+                ID="ValidationSummary"
+                runat="server"
+                HeaderText="Siden inneholder feil, rett disse (eller avbryt) for ikke å miste data"
+                DisplayMode="BulletList"
+                CssClass="validation_summary_as_bulletlist"
+                ShowMessageBox="true"
+                ShowSummary="false"
+                ForeColor="Red"
+                Font-Bold="true"
+                Font-Size="Large" />
+
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Timeplan</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

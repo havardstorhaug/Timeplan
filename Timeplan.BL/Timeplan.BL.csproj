@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9117EB74-ED39-4A98-9673-227388C89AF3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Timeplan.BL</RootNamespace>
+    <AssemblyName>Timeplan.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlphanumComparator.cs" />
+    <Compile Include="Ansatt.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnsattMøteTid.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnsattTilstede.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Avdeling.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BemanningsNorm.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DagType.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Elev.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElevTilstede.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums.cs" />
+    <Compile Include="Klasse.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\Ansatt.cs" />
+    <Compile Include="Partials\AnsattTilstede.cs" />
+    <Compile Include="Partials\Avdeling.cs" />
+    <Compile Include="Partials\BemanningsNorm.cs" />
+    <Compile Include="Partials\Elev.cs" />
+    <Compile Include="Partials\ElevTilstede.cs" />
+    <Compile Include="Partials\Klasse.cs" />
+    <Compile Include="Partials\Sfo.cs" />
+    <Compile Include="Partials\Skole.cs" />
+    <Compile Include="Partials\StillingsType.cs" />
+    <Compile Include="Partials\TidsInndeling.cs" />
+    <Compile Include="Partials\Trinn.cs" />
+    <Compile Include="Partials\UkeType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sfo.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Skole.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StillingsType.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StillingsTypeMøteTid.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TidsAngivelse.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TidsInndeling.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeplan.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timeplan.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeplan.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Timeplan.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Timeplan.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Trinn.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UkeType.cs">
+      <DependentUpon>Timeplan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Timeplan.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Timeplan.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Timeplan.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timeplan.edmx</DependentUpon>
+      <LastGenOutput>Timeplan.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Timeplan.edmx.diagram">
+      <DependentUpon>Timeplan.edmx</DependentUpon>
+    </None>
+    <None Include="Timeplan.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Timeplan.edmx</DependentUpon>
+      <LastGenOutput>Timeplan.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

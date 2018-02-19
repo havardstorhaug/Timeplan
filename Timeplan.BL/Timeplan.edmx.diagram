@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8bffaf8c986e41f1a10c69d5afd7051f" Name="Diagram1">
+        <EntityTypeShape EntityType="TimeplanModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TimeplanModel.Ansatt" Width="1.5" PointX="6" PointY="9.75" />
+        <EntityTypeShape EntityType="TimeplanModel.AnsattMøteTid" Width="1.5" PointX="11.25" PointY="10.625" />
+        <EntityTypeShape EntityType="TimeplanModel.AnsattTilstede" Width="1.5" PointX="8.25" PointY="9.25" />
+        <EntityTypeShape EntityType="TimeplanModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="TimeplanModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="TimeplanModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="TimeplanModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="TimeplanModel.Avdeling" Width="1.5" PointX="8.25" PointY="23.375" />
+        <EntityTypeShape EntityType="TimeplanModel.BemanningsNorm" Width="1.5" PointX="11.25" PointY="19.875" />
+        <EntityTypeShape EntityType="TimeplanModel.DagType" Width="1.5" PointX="9" PointY="1.875" />
+        <EntityTypeShape EntityType="TimeplanModel.Elev" Width="1.5" PointX="13.5" PointY="10.375" />
+        <EntityTypeShape EntityType="TimeplanModel.ElevTilstede" Width="1.5" PointX="15.75" PointY="10.625" />
+        <EntityTypeShape EntityType="TimeplanModel.Klasse" Width="1.5" PointX="10.5" PointY="16.375" />
+        <EntityTypeShape EntityType="TimeplanModel.Sfo" Width="1.5" PointX="11.25" PointY="6.375" />
+        <EntityTypeShape EntityType="TimeplanModel.Skole" Width="1.5" PointX="11.25" PointY="26" />
+        <EntityTypeShape EntityType="TimeplanModel.StillingsType" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="TimeplanModel.StillingsTypeMøteTid" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="TimeplanModel.sysdiagram" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TimeplanModel.TidsAngivelse" Width="1.5" PointX="11.25" PointY="22.875" />
+        <EntityTypeShape EntityType="TimeplanModel.TidsInndeling" Width="1.5" PointX="9" PointY="5.5" />
+        <EntityTypeShape EntityType="TimeplanModel.Trinn" Width="1.5" PointX="11.25" PointY="1.375" />
+        <EntityTypeShape EntityType="TimeplanModel.UkeType" Width="1.5" PointX="6" PointY="7" />
+        <AssociationConnector Association="TimeplanModel.FK_Ansatt_Avdeling" />
+        <AssociationConnector Association="TimeplanModel.FK_Ansatt_StillingsType" />
+        <AssociationConnector Association="TimeplanModel.FK_Ansatt_VarslesAvAnsatt" />
+        <AssociationConnector Association="TimeplanModel.FK_AnsattMøteTid_Ansatt" />
+        <AssociationConnector Association="TimeplanModel.FK_AnsattTilstede_Ansatt" />
+        <AssociationConnector Association="TimeplanModel.FK_Avdeling_Ansatt" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_Ansatt" />
+        <AssociationConnector Association="TimeplanModel.FK_AnsattMøteTid_DagType" />
+        <AssociationConnector Association="TimeplanModel.FK_AnsattTilstede_UkeType" />
+        <AssociationConnector Association="TimeplanModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TimeplanModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="TimeplanModel.FK_Klasse_Avdeling" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_BemanningsNormSfo" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_BemanningsNormSkole" />
+        <AssociationConnector Association="TimeplanModel.FK_StillingsTypeMøteTid_DagType" />
+        <AssociationConnector Association="TimeplanModel.FK_Tid_DagType" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_Klasse" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_Sfo" />
+        <AssociationConnector Association="TimeplanModel.FK_Elev_Trinn" />
+        <AssociationConnector Association="TimeplanModel.FK_ElevTilstede_Elev" />
+        <AssociationConnector Association="TimeplanModel.FK_ElevTilstede_UkeType" />
+        <AssociationConnector Association="TimeplanModel.FK_Sfo_TidsInndeling" />
+        <AssociationConnector Association="TimeplanModel.FK_Sfo_TidsInndeling1" />
+        <AssociationConnector Association="TimeplanModel.FK_Sfo_TidsInndeling2" />
+        <AssociationConnector Association="TimeplanModel.FK_Skole_TidsInndeling" />
+        <AssociationConnector Association="TimeplanModel.FK_StillingsTypeMøteTid_StillingsType" />
+        <AssociationConnector Association="TimeplanModel.AspNetUserRoles" />
+        <AssociationConnector Association="TimeplanModel.KlasseAnsatt" />
+        <AssociationConnector Association="TimeplanModel.SfoAnsatt" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
