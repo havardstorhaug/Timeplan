@@ -78,9 +78,11 @@ namespace Timeplan.Details
             TrinnDropDown.DataTextField = Utilities.GetPropertyName(() => elev.Trinn.Navn);
             TrinnDropDown.DataBind();
 
-            if (elev.Trinn != null)
-                TrinnDropDown.SelectedValue = elev.Trinn.Id.ToString();
+            if (elev.Trinn == null)
+                elev.Trinn = trinn.First();
 
+            TrinnDropDown.SelectedValue = elev.Trinn.Id.ToString();
+            
             HovedPedagogDropDown.DataSource = ansatte;
             HovedPedagogDropDown.DataValueField = Utilities.GetPropertyName(() => elev.HovedPedagog.Id);
             HovedPedagogDropDown.DataTextField = Utilities.GetPropertyName(() => elev.HovedPedagog.Navn);
