@@ -61,7 +61,17 @@ namespace Timeplan.Database.Creator
                 {
                     Id = i,
                     Navn = i + ".trinn",
-                    UkeTimeTall = 20 + i
+                    UkeTimeTall = 20 + i,
+                    MandagStart = new TimeSpan(i, i, 00),
+                    MandagSlutt = new TimeSpan(i, i, 00),
+                    TirsdagStart = new TimeSpan(i, i, 00),
+                    TirsdagSlutt = new TimeSpan(i, i, 00),
+                    OnsdagStart = new TimeSpan(i, i, 00),
+                    OnsdagSlutt = new TimeSpan(i, i, 00),
+                    TorsdagStart = new TimeSpan(i, i, 00),
+                    TorsdagSlutt = new TimeSpan(i, i, 00),
+                    FredagStart = new TimeSpan(i, i, 00),
+                    FredagSlutt = new TimeSpan(i, i, 00),
                 });
             }
 
@@ -157,6 +167,56 @@ namespace Timeplan.Database.Creator
                     fk_TrinnId = (i % 10) + 1,
                     fk_HovedPedagogAnsattId = hovedpedagoger.ElementAt(i % 14).Id,
                     TlfNr = string.Empty
+                });
+            }
+
+            _db.SaveChanges();
+
+            var elever = Elev.GetAll().ToList();
+
+            foreach(var elev in elever)
+            {
+                _db.ElevTilstedes.Add(new ElevTilstede()
+                {
+                    MandagStart = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    MandagSlutt = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    TirsdagStart = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    TirsdagSlutt = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    OnsdagStart = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    OnsdagSlutt = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    TorsdagStart = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    TorsdagSlutt = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    FredagStart = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    FredagSlutt = new TimeSpan(elev.Id % 12, elev.Id % 12, 00),
+                    fk_ElevId = elev.Id,
+                    fk_UkeTypeId = (int) UkeTypeEnum.LikUke
+                });
+            }
+
+            var ansatte = Ansatt.GetAll().ToList();
+
+            foreach (var ansatt in ansatte)
+            {
+                _db.AnsattTilstedes.Add(new AnsattTilstede()
+                {
+                    MandagStart = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    MandagSlutt = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    MandagFri = false,
+                    TirsdagStart = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    TirsdagSlutt = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    TirsdagFri = false,
+                    OnsdagStart = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    OnsdagSlutt = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    OnsdagFri = false,
+                    TorsdagStart = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    TorsdagSlutt = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    TorsdagFri = false,
+                    FredagStart = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    FredagSlutt = new TimeSpan(ansatt.Id % 12, ansatt.Id % 12, 00),
+                    FredagFri = false,
+                    Skole = true,
+                    fk_AnsattId = ansatt.Id,
+                    fk_UkeTypeId = (int)UkeTypeEnum.LikUke
                 });
             }
 
